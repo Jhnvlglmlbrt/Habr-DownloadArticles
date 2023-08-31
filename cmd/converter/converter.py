@@ -1,5 +1,5 @@
 from docx import Document
-from docx import Pt
+from docx.shared import Pt
 import re
 
 
