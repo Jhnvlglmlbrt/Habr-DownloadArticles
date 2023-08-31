@@ -8,6 +8,7 @@
 - Go 1.21
 - Python 3.10.12
 - Библиотека Python docx
+- wsl
 
 ***
 
