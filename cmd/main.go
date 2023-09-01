@@ -3,16 +3,21 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
+
+	doc "habr-download-articles/doc"
 
 	"github.com/gocolly/colly"
 )
 
 func main() {
 	var URL string
+	scanner := bufio.NewScanner(os.Stdin)
+
 	fmt.Print("Введите URL: ")
-	fmt.Scanf("%s", &URL)
+	scanner.Scan()
+
+	URL = scanner.Text()
 
 	c := colly.NewCollector(
 		colly.AllowedDomains("habr.com"),
@@ -36,13 +41,12 @@ func main() {
 
 	c.OnScraped(func(r *colly.Response) {
 		if headerText != "" && articleText != "" {
-			fmt.Print("Вы уверены, что хотите перезаписать файлы? (yes/no): ")
-			reader := bufio.NewReader(os.Stdin)
-			answer, _ := reader.ReadString('\n')
-			answer = answer[:len(answer)-1]
+			fmt.Print("Вы уверены, что хотите перезаписать файлы? (Yes/no): ")
+			scanner.Scan()
+			answer := scanner.Text()
 
-			if answer == "yes" {
-				saveToTextFile(headerText, articleText)
+			if answer == "Yes" {
+				doc.SaveToTextFile(headerText, articleText)
 				fmt.Println("Данные успешно сохранены в .docx файл.")
 			} else {
 				fmt.Println("Операция отменена.")
@@ -53,15 +57,4 @@ func main() {
 	})
 
 	c.Visit(URL)
-}
-
-func saveToTextFile(header, article string) {
-	file, err := os.Create("/mnt/d/ProjectsGo/WebScraper/documents/article.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	file.WriteString(header + "\n\n\n")
-	file.WriteString(article)
 }
