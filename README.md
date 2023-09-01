@@ -5,22 +5,21 @@
 ### Требования
 Для запуска проекта вам понадобятся следующие компоненты:
 
-- Go 1.21
+- Go 1.20
 - Python 3.10.12
-- Библиотека Python docx
-- wsl
+- Lib ptyhon-docx
 
 ***
 
 1. Склонируйте репозиторий на вашу локальную машину:
 
    ```bash
-   git clone https://github.com/Jhnvlglmlbrt/Habr-DownloadArticles
+   git clone https://github.com/Jhnvlglmlbrt/habr-download-articles
 
 2. Перейдите в директорию проекта:
 
    ```bash
-   cd Habr-DownloadArticles/cmd
+   cd habr-download-articles/cmd
 
 3. Установите зависимости проекта:
     ```bash
