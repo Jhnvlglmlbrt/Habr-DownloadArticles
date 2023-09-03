@@ -7,7 +7,7 @@
 
 - Go 1.20
 - Python 3.10.12
-- Lib ptyhon-docx
+- Lib python-docx
 
 ***
 
